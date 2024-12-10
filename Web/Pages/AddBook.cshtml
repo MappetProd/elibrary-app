@@ -1,0 +1,58 @@
+﻿@model EL.Service.ViewModel.AddBookViewModel
+@using EL.Service.DTO
+
+@{
+    Layout = Model.MasterLayoutRef;
+}
+
+@section AdditionalStyles {
+    <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/add-book.css">
+}
+
+<main class="container">
+    <h1 class="page_heading">Добавить книгу</h1>
+
+    <div class="form-container" >
+        <form action="@Url.Action("CreateBook", "AddBook")" method="post" enctype="multipart/form-data">
+            <label for="title">Название</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="authors">Автор</label>
+            <div id="authors">
+                <input type="button" id="add-author-into-form-btn" value="Добавить автора" required>
+            </div>
+
+            <label for="publisher">Издатель</label>
+            <select id="publisher-select-book-param" name="publisher" required>
+                @await Html.PartialAsync("/Pages/SelectOptions/_PartialPublishers.cshtml", Model.Publishers);
+            </select>
+
+            <label for="year">Год выпуска</label>
+            <input type="number" id="year" name="publishing-year" min="1900" max="@DateTime.UtcNow.Year.ToString()" required>
+
+            <label for="genres">Жанры</label>
+            <select id="genre-select-book-param" class="multiple-select" name="genres" multiple required>
+                @await Html.PartialAsync("/Pages/SelectOptions/_PartialGenres.cshtml", Model.Genres);
+            </select>
+
+            <label for="amount">Количество</label>
+            <input type="number" id="amount" name="amount" required>
+
+            <label for="isbn">ISBN</label>
+            <input type="text" id="isbn" name="isbn" required>
+
+            <label for="image">Изображение</label>
+            <input type="file" id="image" name="image" required>
+
+            <input id="send-book-to-server" type="submit" value="Добавить книгу">
+        </form>
+    </div>
+</main>
+
+@section Scripts {
+
+    <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+    <script src="~/js/multiselect.js"></script>
+    <script src="~/js/add-book.js"></script>
+}

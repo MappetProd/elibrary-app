@@ -1,0 +1,80 @@
+﻿@model EL.Service.ViewModel.CatalogViewModel
+@{
+    Layout = Model.MasterLayoutRef;
+}
+
+@section AdditionalStyles {
+    <link rel="stylesheet" href="/css/catalog.css">
+    <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet" />
+}
+
+@* <div id="find_book_wrapper">
+    <input type="text">
+    <button>Найти</button>
+</div> *@
+
+<main class="container">
+    <div id="filters">
+        <div class="filter">
+            <label>Жанры</label>
+            <select id="genre-filter" class="multiple-select" multiple>
+                @await Html.PartialAsync("/Pages/SelectOptions/_PartialGenres.cshtml", Model.Genres);
+            </select>
+        </div>
+
+        <div class="filter">
+            <label>Авторы</label>
+            <select id="author-filter" class="multiple-select" multiple>
+                @await Html.PartialAsync("/Pages/SelectOptions/_PartialAuthors.cshtml", Model.Authors);
+            </select>
+        </div>
+
+        <div class="filter">
+            <label>Издательства</label>
+            <select id="publisher-filter" class="multiple-select" multiple>
+                @await Html.PartialAsync("/Pages/SelectOptions/_PartialPublishers.cshtml", Model.Publishers);
+            </select>
+        </div>
+    </div>
+
+    <div id="catalog">
+        @{
+            if (Model.UserRole == "librarian")
+                @await Html.PartialAsync("/Pages/_PartialBooksOutputLibrarian.cshtml", Model.PrintedBooks)
+            else
+                @await Html.PartialAsync("/Pages/_PartialBooksOutput.cshtml", Model.PrintedBooks)
+        }
+    </div>
+
+    @* <div class="catalog-item">
+        <img src="">
+        <div class="catalog-item-info-zone">
+            <h3>Название книги</h3>
+            <p>Фамилия И.О. автора</p>
+            <p>Год выпуска</p>
+        </div>
+        <div class="catalog-item-action-zone">
+            <button> Заказать </button>
+            <button> И </button>
+        </div>
+    </div> *@
+</main>
+
+@{
+    if (Model.UserRole == "librarian")
+    {
+        <script src="/js/catalog-edit-book.js" defer></script>
+    }
+    else if (Model.UserRole == "reader")
+    {
+        <script src="/js/add-to-cart.js" defer></script>
+    }
+}
+
+@section Scripts {
+    <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+    <script src="/js/multiselect.js"></script>
+    <script src="/js/catalog-filters.js"></script>
+}
+
+

@@ -1,0 +1,34 @@
+﻿@model IEnumerable<PrintedBookDTO>
+@using EL.Service.DTO;
+
+@{
+    string authors = string.Empty;
+}
+
+@{
+    foreach (PrintedBookDTO pb in Model)
+    {
+        <div class="catalog-item" data-id="@pb.Id.ToString()" data-isincart="false">
+            <img src="@string.Format("/img/printed_books/{0}.jpg", pb.Id)">
+            <div class="catalog-item-info-zone">
+                <h3>@pb.Title</h3>
+                <p>
+                    @{
+                        authors = string.Empty;
+                        foreach (AuthorDTO a in pb.Authors)
+                        {
+                            authors += string.Format("{0} {1}", a.Surname, a.Name);
+                            authors += ", ";
+                        }
+                        authors = authors.Substring(0, authors.Length - 2);
+                        @authors
+                    }
+                </p>
+                <!--<p>Год выпуска</p>-->
+            </div>
+            <div class="catalog-item-action-zone">
+                <button class="cart-action-btn"> <img class="cart-action-img" src="/img/btn/add-to-cart-btn.png"> </button>
+            </div>
+        </div>
+    }
+}

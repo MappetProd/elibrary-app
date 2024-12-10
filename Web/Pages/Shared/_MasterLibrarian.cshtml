@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Электронная библиотека</title>
+
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+
+    @RenderSection("AdditionalStyles", required: false)
+</head>
+
+<body>
+    <header id="main_wrapper">
+        <h1 class="page_heading">Электронная библиотека</h1>
+        <nav>
+            <a href="@Url.Action("Index", "Catalog")">Каталог</a>
+            <a href="@Url.Action("Index", "Login")">ЛК</a>
+            <a href="@Url.Action("Index", "AddUser")">Регистрация читателей</a>
+            <a href="@Url.Action("Index", "ModerateApplication")">Заявки</a>
+            <a href="@Url.Action("Index", "AddBook")">Добавление книги</a>
+        </nav>
+    </header>
+
+    @RenderBody()
+</body>
+
+<!--Jquery link-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+@RenderSection("Scripts", required: false)
+
+</html>

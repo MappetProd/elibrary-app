@@ -1,0 +1,48 @@
+﻿@model EL.Service.ViewModel.CartViewModel
+@using EL.Service.DTO
+@{
+    Layout = Model.MasterLayoutRef;
+    string authors = string.Empty;
+}
+
+@section AdditionalStyles {
+    <link rel="stylesheet" href="/css/cart.css">
+}
+
+
+<main class="container">
+    <h2>Корзина</h2>
+    <section id="cart">
+        @{
+            foreach (CartItemDTO cartItem in Model.cartItems)
+            {
+                <div class="cart-item" data-id="@cartItem.Id">
+                    <img src="@string.Format("/img/printed_books/{0}.jpg", cartItem.PrintedBook.Id)" alt="Изображение книги" class="cart-item-image">
+                    <div class="book-info">
+                        <h3 class="book-title">@cartItem.PrintedBook.Title</h3>
+                        <p class="book-authors">
+                            @{
+                                authors = string.Empty;
+                                foreach (AuthorDTO a in cartItem.PrintedBook.Authors)
+                                {
+                                    authors += string.Format("{0} {1}", a.Surname, a.Name);
+                                    authors += ", ";
+                                }
+                                authors = authors.Substring(0, authors.Length - 2);
+                                @authors
+                            }
+                        </p>
+                        <p class="book-publisher">@string.Format("{0}, {1}", cartItem.PrintedBook.PublisherName, cartItem.PrintedBook.PublishingYear)</p>
+                    </div>
+                    <button class="delete-cart-item-btn"><img src="/img/btn/empty-cart.png"/></button>
+                </div>
+            }
+        }
+
+    </section>
+    <button id="create-application-btn">Сформировать заявку</button>
+</main>
+
+@section Scripts {
+    <script src="/js/cart.js"></script>
+}

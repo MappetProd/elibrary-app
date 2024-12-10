@@ -1,0 +1,21 @@
+﻿@using EL.Service.DTO;
+@model IEnumerable<MinimizedPrintedBookDTO>
+
+<label><strong>Запрашиваемые книги:</strong></label>
+<div class="request-books-wrapper">
+    @{
+        foreach (MinimizedPrintedBookDTO pb in Model)
+        {
+            string authorStr = string.Format("{0}, {1}", @pb.Authors.First().Name, @pb.Authors.First().Surname);
+
+            <div class="request-book">
+                <img src="@string.Format("/img/printed_books/{0}.jpg", pb.Id)" alt="Book" class="book-image">
+                <div class="request-book-text-info">
+                    <strong>Название книги: </strong> @pb.Title <br>
+                    <strong>Издание: </strong> @string.Format("{0}, {1}", @pb.PublisherName, @pb.PublishingYear)<br>
+                    <strong>Автор: </strong> @authorStr
+                </div>
+            </div>
+        }
+    }
+</div>

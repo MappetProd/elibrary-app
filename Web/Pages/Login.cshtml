@@ -1,0 +1,22 @@
+﻿@model EL.Service.ViewModel.BaseViewModel
+@{
+    Layout = Model.MasterLayoutRef;
+}
+
+@section AdditionalStyles {
+}
+
+<main class="container">
+    <h1 class="page_heading">Вход в систему</h1>
+    <div class="form-container">
+        <form action="@Url.Action("Authenticate", "Login")" method="post">
+            <label for="username">Логин</label>
+            <input type="text" id="login" name="login" required>
+
+            <label for="password">Пароль</label>
+            <input type="password" id="password" name="password" required>
+
+            <input type="submit" value="Войти">
+        </form>
+    </div>
+</main>

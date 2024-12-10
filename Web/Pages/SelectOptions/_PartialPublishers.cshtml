@@ -1,0 +1,8 @@
+﻿@model IEnumerable<string>
+
+@{
+    foreach (string publisherName in Model)
+    {
+        <option>@publisherName</option>
+    }
+}

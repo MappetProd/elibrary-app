@@ -1,0 +1,18 @@
+﻿@model EL.Service.ViewModel.ProfileViewModel;
+@using EL.Service.DTO;
+
+@section AdditionalStyles {
+	<link href="/css/profile-base.css" rel="stylesheet"/>
+}
+
+@{
+	Layout = Model.MasterLayoutRef;
+	UserDTO currUser = Model.User;
+}
+
+<main class="container">
+	<p>Добро пожаловать, @String.Format("{0} {1}", currUser.Surname, currUser.Name)!</p>
+	<p>Статус: @currUser.RoleTranslation</p>
+	<a href="@Url.Action("Index", "ChangePassword")">Изменение пароля</a>
+	<button onclick="location.href='@Url.Action("ExitProfile", "Logout")'">Выйти</button>
+</main>

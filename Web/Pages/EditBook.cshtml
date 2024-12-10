@@ -1,0 +1,59 @@
+﻿@model EL.Service.ViewModel.EditBookViewModel
+@using EL.Service.DTO
+@using EL.Service.InputModel
+
+@{
+    Layout = Model.MasterLayoutRef;
+    string bookGenres = ""; 
+    foreach (string genre in Model.book.Genres) 
+    {
+        bookGenres += $"{genre},";
+    }
+    bookGenres = bookGenres.Remove(bookGenres.Length - 1);
+}
+
+@section AdditionalStyles {
+    <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/add-book.css">
+}
+
+<main class="container">
+    <h1 class="page_heading">@string.Format("Редактировать книгу \"{0}\" (издательство \"{1}\", {2} год)", @Model.book.Title, Model.book.PublisherName, Model.book.PublishingYear)</h1>
+
+    <div class="form-container" >
+        <form action="@Url.Action("EditBook", "EditBook")" method="post" enctype="multipart/form-data">
+            <input name="id" value="@Model.book.Id" type="hidden"/>
+            
+            <label for="publisher">Издатель</label>
+            <select id="publisher-select-book-param" name="publisher" value="@Model.book.PublisherName">
+                @await Html.PartialAsync("/Pages/SelectOptions/_PartialPublishers.cshtml", Model.AllPublishers);
+            </select>
+
+            <label for="year">Год выпуска</label>
+            <input type="number" id="year" name="publishing-year" min="1900" max="@DateTime.UtcNow.Year.ToString()" value="@Model.book.PublishingYear">
+
+            <label for="amount">Количество</label>
+            <input type="number" id="amount" name="amount" value="@Model.book.Amount">
+
+            <label for="isbn">ISBN</label>
+            <input type="text" id="isbn" name="isbn" value="@Model.book.ISBN">
+
+            <div id="preview-book-image-wrapper">
+                <label for="image">Текущее изображение:</label>
+                <img src="@Model.book.ImagePath" />
+            </div>
+
+            <input type="file" id="image" name="image">
+
+            <input id="send-book-to-server" type="submit" value="Редактировать издание книги">
+        </form>
+    </div>
+</main>
+
+@section Scripts {
+    <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+    <script src="~/js/multiselect.js"></script>
+    <script src="~/js/add-book.js"></script>
+    <script src="~/js/update-genres.js" defer></script>
+    <script src="~/js/edit-book.js" defer></script>
+}

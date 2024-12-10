@@ -1,0 +1,77 @@
+﻿.container {
+    max-width: 90vw;
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#find_book_wrapper {
+    display: flex;
+    gap: 20px;
+    padding: 0px 10px;
+    width: 50vw;
+    margin: 0 auto;
+}
+
+#find_book_wrapper > input {
+    width: 100%;
+    margin-bottom: 0;
+}  
+
+#filters {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.filter {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#catalog {
+    width: 75%;
+}
+
+.catalog-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 50vh; /*TODO: adaptive layout with %*/
+    padding: 10px;
+}
+
+.catalog-item > .catalog-item-info-zone {
+    height: 20%;
+}
+
+    .catalog-item > img {
+        width: 60%;
+        height: 60%;
+        align-self: center;
+        justify-self: center;
+    }
+
+    .catalog-item > .catalog-item-action-zone {
+        display: flex;
+        justify-content: space-between;
+    }
+
+#catalog {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.catalog-item-delete {
+    align-self: center;
+    background-color: rgb(243, 107, 62);
+    border: none;
+}
+
+.cart-action-img{
+    width: 32px;
+}

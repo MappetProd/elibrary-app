@@ -1,0 +1,9 @@
+﻿@using EL.Service.DTO
+@model IEnumerable<AuthorDTO>
+
+@{
+    foreach (AuthorDTO author in Model)
+    {
+        <option>@String.Format("{0} {1}", author.Surname, author.Name)</option>
+    }
+}

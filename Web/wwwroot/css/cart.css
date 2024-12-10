@@ -1,0 +1,71 @@
+﻿
+
+.cart {
+    margin-top: 20px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    height: 20vh;
+    gap: 30px;
+}
+
+.cart-item-image {
+    height: 100%;
+    align-self: center;
+}
+
+.book-info {
+    flex-grow: 1;
+}
+
+.book-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #222;
+}
+
+.book-authors, .book-publisher {
+    font-size: 1rem;
+    color: #555;
+    margin: 5px 0;
+}
+
+.cart-actions {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.submit-order {
+    background-color: #333;
+    color: #fff;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .submit-order:hover {
+        background-color: #555;
+    }
+
+.container {
+    padding: 0px 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.delete-cart-item-btn {
+    margin-top: auto;
+}
+
+    .delete-cart-item-btn > img {
+        width: 32px;
+    }
