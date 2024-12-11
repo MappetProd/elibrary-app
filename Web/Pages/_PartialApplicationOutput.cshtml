@@ -12,7 +12,7 @@
         </h2>
         <div id="@application.Id" class="accordion-collapse collapse" aria-labelledby="pendingRequest1Heading" data-bs-parent="#pendingRequestsAccordion">
             <div class="accordion-body">
-                <p><strong>Дата создания: </strong>@application.CreationDtm.ToString("g")</p>
+                <p><strong>Дата создания: </strong>@application.CreationDtm.ToLocalTime().ToString("g")</p>
                 @if (application.ResolveDtm != null)
                 {
                     <p><strong>Дата начала действия: </strong>@application.ResolveDtm?.ToLocalTime().ToString("g")</p>

@@ -9,6 +9,8 @@ using EL.Service.Contract;
 using EL.Service.DTO;
 using EL.Service.Implementation;
 using EL.Service.ViewModel;
+using EL.Service.InputModel;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace EL.Web.Controllers
 {
@@ -19,16 +21,16 @@ namespace EL.Web.Controllers
         private const string _PROFILE_PAGE_REF = "~/Pages/Profile.cshtml";
 
         private readonly IAccountService _accountService;
-        private readonly Dictionary<string, string> _rolePage;
+        //private readonly Dictionary<string, string> _rolePage;
         public LoginController([FromServices] IAccountService accountService)
         {
             _accountService = accountService;
-            _rolePage = new Dictionary<string, string>
+            /*_rolePage = new Dictionary<string, string>
             {
                 {"owner", "/Pages/OwnerProfile.cshtml"},
                 {"librarian", "/Pages/LibrarianProfile.cshtml"},
                 {"reader", "/Pages/ReaderProfile.cshtml"},
-            };
+            };*/
 		}
 
         [HttpGet("Index")]
@@ -57,5 +59,7 @@ namespace EL.Web.Controllers
 
             return RedirectToAction("Index", "Login");
         }
+
+        
     }
 }

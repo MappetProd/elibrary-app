@@ -22,6 +22,16 @@ namespace EL.Service.Implementation
             _printedBookRepository = printedBookRepository;
         }
 
+        private List<DTO.AuthorDTO> ConvertAuthorsToDTO(IEnumerable<Author> authors)
+        {
+            return (from author in authors
+                    select new DTO.AuthorDTO()
+                    {
+                        Name = author.Name,
+                        Surname = author.Surname
+                    }).ToList();
+        }
+
         public IEnumerable<PrintedBookDTO> GetAllPrintedBooks()
         {
             IEnumerable<PrintedBookDTO> books = from pb in _printedBookRepository.GetAll().ToList()
@@ -29,34 +39,14 @@ namespace EL.Service.Implementation
                                                  {
                                                      Id = pb.Id.ToString(),
                                                      Title = pb.Book.Name,
-                                                     Authors = (from author in pb.Book.Authors
-                                                                select new DTO.AuthorDTO()
-                                                                {
-                                                                    Name = author.Name,
-                                                                    Surname = author.Surname
-                                                                }).ToList()
+                                                     Authors = ConvertAuthorsToDTO(pb.Book.Authors),
+                                                     AmountLeft = pb.AmountLeft
                                                  };
             return books;
         }
 
         public IEnumerable<PrintedBookDTO> GetAllPrintedBooks(PrintedBookSearchInputModel queryInput)
         {
-            /*List<Repository.DTO.AuthorDTO> authors = new List<Repository.DTO.AuthorDTO>();
-            if (queryInput.SelectedAuthors != null)
-            {
-                foreach (string authorInitials in queryInput.SelectedAuthors.Split(','))
-                {
-                    string[] author = authorInitials.Split(' ');
-                    string authorSurname = author[0];
-                    string authorName = author[1];
-                    authors.Add(new Repository.DTO.AuthorDTO
-                    {
-                        Name = authorName,
-                        Surname = authorSurname
-                    });
-                }
-            }*/
-
             var result = _printedBookRepository.Filter(queryInput.SelectedGenres, queryInput.SelectedAuthors, queryInput.SelectedPublishers);
             if (!result.Any() && queryInput.SelectedGenres == null && queryInput.SelectedAuthors == null && queryInput.SelectedPublishers == null)
                 result = _printedBookRepository.GetAll();
@@ -66,63 +56,9 @@ namespace EL.Service.Implementation
                    {
                        Id = pb.Id.ToString(),
                        Title = pb.Book.Name,
-                       Authors = (from author in pb.Book.Authors
-                                  select new Service.DTO.AuthorDTO()
-                                  {
-                                      Name = author.Name,
-                                      Surname = author.Surname
-                                  }).ToList()
+                       Authors = ConvertAuthorsToDTO(pb.Book.Authors),
+                       AmountLeft = pb.AmountLeft
                    };
-
-            /*IEnumerable<PrintedBook> filteredBooks = _printedBookRepository.GetAll().ToList();
-            
-            if (queryInput.SelectedPublishers != null)
-            {
-                List<PrintedBook> tempResult = new List<PrintedBook>();
-                foreach (string publisherName in queryInput.SelectedPublishers.Split(','))
-                {
-                    tempResult.AddRange(filteredBooks.Where(pb => pb.Publisher.Name == publisherName));
-                }
-                filteredBooks = tempResult;
-            }
-
-            if (queryInput.SelectedGenres != null)
-            {
-                List<PrintedBook> tempResult = new List<PrintedBook>();
-                foreach (string genreName in queryInput.SelectedGenres.Split(','))
-                {
-                    tempResult.AddRange(filteredBooks.Where(pb => pb.Book.Genres.Where(g => g.Name == genreName).Any()));
-                }
-                filteredBooks = tempResult;
-            }
-
-            if (queryInput.SelectedAuthors != null)
-            {
-                List<PrintedBook> tempResult = new List<PrintedBook>();
-                foreach (string authorInitials in queryInput.SelectedAuthors.Split(','))
-                {
-                    string[] author = authorInitials.Split(' ');
-                    string authorSurname = author[0];
-                    string authorName = author[1];
-                    tempResult.AddRange(filteredBooks.Where(pb => pb.Book.Authors.Where(a => a.Name == authorName && a.Surname == authorSurname).Any()));
-                }
-                filteredBooks = tempResult;
-            }
-
-            IEnumerable<PrintedBookDTO> result = from pb in filteredBooks
-                                                 select new PrintedBookDTO()
-                                                 {
-                                                     Id = pb.Id.ToString(),
-                                                     Title = pb.Book.Name,
-                                                     Authors = (from author in pb.Book.Authors
-                                                                select new AuthorDTO()
-                                                                {
-                                                                    Name = author.Name,
-                                                                    Surname = author.Surname
-                                                                }).ToList()
-                                                 };
-
-            return result;*/
         }
     }
 }

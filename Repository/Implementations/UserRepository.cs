@@ -29,5 +29,12 @@ namespace EL.Repository.Implementations
             User? user = entities.SingleOrDefault(u => u.Id.Equals(guid));
             return user;
         }
+
+        public IEnumerable<User> GetAllByRole(string role)
+        {
+            return (from u in entities
+                   where u.Status.Name == role
+                   select u).ToList();
+        }       
     }
 }

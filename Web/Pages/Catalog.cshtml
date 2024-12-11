@@ -8,11 +8,6 @@
     <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet" />
 }
 
-@* <div id="find_book_wrapper">
-    <input type="text">
-    <button>Найти</button>
-</div> *@
-
 <main class="container">
     <div id="filters">
         <div class="filter">
@@ -41,23 +36,12 @@
         @{
             if (Model.UserRole == "librarian")
                 @await Html.PartialAsync("/Pages/_PartialBooksOutputLibrarian.cshtml", Model.PrintedBooks)
-            else
+            else if (Model.UserRole == "reader")
                 @await Html.PartialAsync("/Pages/_PartialBooksOutput.cshtml", Model.PrintedBooks)
+            else
+                @await Html.PartialAsync("/Pages/_PartialBooksOutputDefault.cshtml", Model.PrintedBooks)
         }
     </div>
-
-    @* <div class="catalog-item">
-        <img src="">
-        <div class="catalog-item-info-zone">
-            <h3>Название книги</h3>
-            <p>Фамилия И.О. автора</p>
-            <p>Год выпуска</p>
-        </div>
-        <div class="catalog-item-action-zone">
-            <button> Заказать </button>
-            <button> И </button>
-        </div>
-    </div> *@
 </main>
 
 @{

@@ -45,8 +45,29 @@ namespace EL.Service.Implementation
                 PhoneNumber = userInputData.PhoneNumber
             };
 
-            _personRepository.Insert((Person)user);
             _userRepository.Insert(user);
+        }
+
+        public bool IsUserPasswordCorrect(string userId, string password)
+        {
+            User? requestedUser = _userRepository.Get(userId);
+            if (requestedUser == null) 
+                return false;
+
+            return PasswordHasher.VerifyHashedPassword(requestedUser.Password, password);
+        }
+
+        public bool ChangedPassword(string userId, string newPassword)
+        {
+            User? user = _userRepository.Get(userId);
+            if (user == null)
+                return false;
+
+            string newUserPasswordHash = PasswordHasher.Hash(newPassword);
+            user.Password = newUserPasswordHash;
+            _userRepository.Update(user);
+
+            return true;
         }
 
         public ClaimsPrincipal? TryLogin(string login, string password)

@@ -1,0 +1,53 @@
+﻿@model EL.Service.ViewModel.StatisticsViewModel
+@{
+    Layout = Model.MasterLayoutRef;
+}
+
+@section AdditionalStyles {
+    <link href="/css/statistics.css" rel="stylesheet"/>
+}
+
+<div class="container">
+    <h1>Статистика библиотеки</h1>
+    <main>
+        <section class="stats-section">
+            <h2>Пользователи</h2>
+            <div class="stat-item">
+                <span>Зарегистрированных читателей:</span>
+                <strong id="readerCount">@Model.ReadersAmount</strong>
+            </div>
+            <div class="stat-item">
+                <span>Сотрудников (библиотекарей):</span>
+                <strong id="librarianCount">@Model.LibrariansAmount</strong>
+            </div>
+        </section>
+        <section class="stats-section">
+            <h2>Книги</h2>
+            <div class="stat-item">
+                <span>Текущее количество книг в библиотеке:</span>
+                <strong id="bookCount">@Model.CurrentStockAmount</strong>
+            </div>
+
+            <div class="stat-item">
+                <span>Количество книг "на руках":</span>
+                <strong id="bookCount">@Model.BooksOfReadersAmount</strong>
+            </div>
+
+            <div class="stat-item">
+                <span>Количество уникальных книг в библиотеке:</span>
+                <strong id="bookCount">@Model.UniquePrintedBooksAmount</strong>
+            </div>
+        </section>
+        <section class="stats-section">
+            <h2>Заявки</h2>
+            <div class="stat-item">
+                <span>Заявок получено за всё время:</span>
+                <strong id="requestCount">@Model.ApplicationsAmount</strong>
+            </div>
+            <div class="stat-item">
+                <span>Заявок обработано за всё время:</span>
+                <strong id="requestCount">@Model.ClosedApplicationsAmount</strong>
+            </div>
+        </section>
+    </main>
+</div>

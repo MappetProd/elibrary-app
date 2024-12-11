@@ -25,15 +25,15 @@ namespace EL.Web.Controllers
         }
 
         [HttpPost("CreateUser")]
-        public IActionResult CreateUser(UserInputModel userInputData)
+        public IResult CreateUser(UserInputModel userInputData)
         {
             if (!ModelState.IsValid)
             {
-                return View(_HOME_PAGE_REF);
+                return Results.BadRequest();
             }
 
             _accountService.AddUser(userInputData);
-            return View(_HOME_PAGE_REF);
+            return Results.Ok();
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace EL.Domain;
 
-public enum UserStatus { ADMIN, READER, LIBRARIAN }
+public enum UserStatus { OWNER = 1, READER = 2, LIBRARIAN = 3}
 
 public class Status
 {

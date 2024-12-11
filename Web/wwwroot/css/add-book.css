@@ -1,10 +1,17 @@
-﻿.form-container {
+﻿.container {
+    max-width: 600px;
+    margin: 0px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.form-container {
     /*max-width: 500px;*/
     margin: auto;
     background-color: #fff;
     padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
 }
 
 .book-author {
@@ -16,9 +23,15 @@
     border: 1px solid #ddd;
 }
 
-#prev-book-image-wrapper{
-    width: 100%;
+#preview-book-image-wrapper {
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#preview-book-image-wrapper > img {
+    width: 30%;
 }

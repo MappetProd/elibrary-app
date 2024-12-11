@@ -14,19 +14,13 @@
                         @string.Format("{0} {1}", a.Surname, a.Name)
                     }
                 </p>
-                <!--<p>Год выпуска</p>-->
-            </div>
-            @{
-                if (pb.AmountLeft == 0)
-                {
-                    <p class="catalog-item-stock">Нет в наличии!</p>
+                @{
+                    if (pb.AmountLeft == 0)
+                    {
+                        <p class="catalog-item-stock">Нет в наличии!</p>
+                    }
                 }
-            }
-            <div class="catalog-item-action-zone">
-                <a href="@Url.Action("Index", "EditBook", new {bookId = pb.Id})"><button class="edit-book-btn-1">Редактировать</button></a>
-                <button class="delete-printed-book-btn">
-                    <img src="~/img/btn/delete-book-btn.png"/>
-                </button>
+                <!--<p>Год выпуска</p>-->
             </div>
         </div>
     }

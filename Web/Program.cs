@@ -50,6 +50,7 @@ builder.Services.AddScoped<IApplicationService, ApplicationService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<ICatalogService, CatalogService>();
 builder.Services.AddScoped<IBookKeepingService, BookKeepingService>();
+builder.Services.AddScoped<IStatisticsService, StatisticsService>();
 
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {

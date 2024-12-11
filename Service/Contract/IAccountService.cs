@@ -1,10 +1,4 @@
-﻿using EL.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using EL.Service.InputModel;
 using EL.Service.DTO;
 
@@ -16,5 +10,7 @@ namespace EL.Service.Contract
         void AddUser(UserInputModel userViewModel);
 
         UserDTO ClaimsToDTO(IEnumerable<Claim> claims);
+        bool IsUserPasswordCorrect(string userId, string password);
+        bool ChangedPassword(string userId, string newPassword);
     }
 }

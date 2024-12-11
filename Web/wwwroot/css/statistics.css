@@ -1,0 +1,46 @@
+﻿.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 1.8em;
+    color: #444;
+}
+
+main {
+    padding: 20px 0;
+}
+
+.stats-section {
+    margin-bottom: 30px;
+}
+
+    .stats-section h2 {
+        font-size: 1.4em;
+        color: #555;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+    }
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+    .stat-item span {
+        color: #666;
+    }
+
+    .stat-item strong {
+        font-weight: bold;
+        color: #222;
+    }

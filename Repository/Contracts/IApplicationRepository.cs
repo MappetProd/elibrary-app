@@ -21,6 +21,9 @@ namespace EL.Repository.Contracts
         public IEnumerable<Application> GetAllSentApplicationsOfReader(Guid readerId);
         public IEnumerable<Application> GetAllResolvedApplicationsOfReader(Guid readerId);
         public IEnumerable<Application> GetAllEndedApplicationsOfReader(Guid readerId);
-        
+
+        public Application? GetLastApplicationOfUser(Guid userId);
+
+
     }
 }

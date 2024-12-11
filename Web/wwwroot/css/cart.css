@@ -69,3 +69,11 @@
     .delete-cart-item-btn > img {
         width: 32px;
     }
+
+button, input[type="submit"] {
+    background-color: #f1ebeb;
+}
+
+#create-application-btn {
+    background-color: #555;
+}

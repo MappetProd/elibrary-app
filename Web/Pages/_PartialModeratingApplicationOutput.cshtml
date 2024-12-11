@@ -7,13 +7,13 @@
         string elementId = string.Format("application{0}", application.Id);
         <h2 class="accordion-header" id="@string.Format("{0}Heading", application.Id)">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="@string.Concat("#", application.Id)" aria-expanded="false" aria-controls="@elementId">
-                Заявка #@application.ApplicationNumber
+                @string.Format("Заявка #{0}-{1}",application.UserLogin, application.ApplicationNumber)
             </button>
         </h2>
         <div id="@application.Id" data-id="@application.Id" class="accordion-collapse collapse" aria-labelledby="pendingRequest1Heading" data-bs-parent="#pendingRequestsAccordion">
             <div class="accordion-body">
                 <p><strong>Логин пользователя:</strong> @application.UserLogin</p>
-                <p><strong>Дата создания: </strong>@application.CreationDtm.ToString("g")</p>
+                <p><strong>Дата создания: </strong>@application.CreationDtm.ToLocalTime().ToString("g")</p>
                 @if (application.ResolveDtm != null)
                 {
                     <p><strong>Дата начала действия: </strong>@application.ResolveDtm?.ToLocalTime().ToString("g")</p>

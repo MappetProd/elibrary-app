@@ -26,7 +26,5 @@ namespace EL.Service.DTO
 		public string Genres { get; set; }
 
 		public string ISBN { get; set; }
-
-        public int Amount { get; set; }
 	}
 }

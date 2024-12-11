@@ -43,7 +43,7 @@ $("#create-application-btn").on("click", async function () {
         method: 'PUT'
     })
 
-    if (response.ok) {
+    if (response.redirected) {
         $("#cart").empty()
     }
     else {

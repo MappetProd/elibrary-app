@@ -24,6 +24,12 @@
                         @authors
                     }
                 </p>
+                @{
+                    if (pb.AmountLeft == 0)
+                    {
+                        <p class="catalog-item-stock">Нет в наличии!</p>
+                    }
+                }
                 <!--<p>Год выпуска</p>-->
             </div>
             <div class="catalog-item-action-zone">

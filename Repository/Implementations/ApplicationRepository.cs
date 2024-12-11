@@ -33,6 +33,14 @@ namespace EL.Repository.Implementations
                     select a).ToList();
         }
 
+        public Application? GetLastApplicationOfUser(Guid readerId)
+        {
+            return entities.Where(u => u.Id.Equals(readerId))
+                .OrderByDescending(a => a.CreationDtm.Date)
+                .ThenBy(a => a.CreationDtm.TimeOfDay).SingleOrDefault();
+
+        }
+
         public IEnumerable<Application> GetAllEndedApplicationsOfReader(Guid readerId)
         {
             return (from a in entities

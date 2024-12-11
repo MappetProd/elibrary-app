@@ -160,30 +160,25 @@ namespace EL.Service.Implementation
                 printedBooks.Add(item.PrintedBook);
             }
 
-            /*foreach (string id in printedBookIds)
-            {
-                PrintedBook? pb = _printedBookRepository.Get(Guid.Parse(id));
-                if (pb == null)
-                    return false;
-                //throw new Exception();
-                printedBooks.Add(pb);
-            }*/
-
             lock (_createApplicationLock)
             {
                 foreach (PrintedBook pb in printedBooks)
                 {
-                    pb.AmountLeft -= 1;
-                    if (pb.AmountLeft < 0)
+                    if (pb.AmountLeft - 1 < 0)
                         return false;
+
+                    pb.AmountLeft -= 1;
                 }
+
+                Application? lastUserApplication = _applicationRepository.GetLastApplicationOfUser(user.Id);
 
                 Application application = new Application
                 {
                     IssuedBy = user,
                     IssuedByUserId = user.Id,
                     CreationDtm = DateTime.UtcNow,
-                    PrintedBooks = printedBooks
+                    PrintedBooks = printedBooks,
+                    ApplicationNumber = lastUserApplication == null ? 0 : lastUserApplication.ApplicationNumber + 1,
                 };
 
                 _applicationRepository.Insert(application);

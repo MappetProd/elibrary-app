@@ -41,17 +41,16 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    height: 50vh; /*TODO: adaptive layout with %*/
+    height: auto;
     padding: 10px;
 }
 
 .catalog-item > .catalog-item-info-zone {
-    height: 20%;
+    height: 35%;
 }
 
     .catalog-item > img {
-        width: 60%;
-        height: 60%;
+        width: 50%;
         align-self: center;
         justify-self: center;
     }
@@ -74,4 +73,28 @@
 
 .cart-action-img{
     width: 32px;
+}
+
+
+.catalog-item-stock {
+    font-style: italic;
+    color: red;
+}
+
+
+.edit-book-btn-1 {
+    background-color: #555;
+}
+
+
+.delete-printed-book-btn, .cart-action-btn {
+    background-color: #f1ebeb;
+    padding: 0px;
+    width: 48px;
+    height: 48px;
+}
+
+.delete-printed-book-btn > img {
+    width: 24px;
+    height: 24px;
 }
